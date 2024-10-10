@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Novena/Admin/Components/Configuration/UI/OptionItemWindow.uss?fileID=7433441132597879392&amp;guid=0f1f435257d8b0245ac34c229ce3ac7d&amp;type=3#OptionItemWindow" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="OPTION EDIT" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="false" style="-unity-text-align: upper-center; -unity-font-style: bold; font-size: 20px; margin-bottom: 30px; padding-top: 20px;" />
+        <ui:TextField picking-mode="Ignore" label="Name" name="NameText" />
+        <ui:TextField picking-mode="Ignore" label="Description" name="DescriptionText" multiline="true" style="white-space: normal;" />
+        <ui:DropdownField label="Category" name="CategoryDropDown" />
+        <ui:DropdownField label="Value type" name="ValueTypeDropDown" />
+        <ui:VisualElement name="ValueFields" style="flex-grow: 1;">
+            <ui:TextField picking-mode="Ignore" label="String" name="ValueString" />
+            <ui:IntegerField label="Integer" value="42" name="ValueInteger" />
+            <ui:FloatField label="Float" value="42,2" name="ValueFloat" />
+            <ui:Toggle label="Toggle" name="ValueToggle" />
+            <ui:Vector2Field label="Vec2" name="ValueVector2" />
+            <ui:Vector3Field label="Vec3" name="ValueVector3" />
+            <ui:VisualElement name="SliderVisualElement" style="flex-grow: 1; flex-direction: column; max-height: 70px;">
+                <ui:Slider label="Slider" high-value="100" name="ValueSlider" show-input-field="true" style="width: 100%; max-width: 100%;" />
+                <ui:IntegerField label="Min&#x9;" value="0" name="SliderMinField" />
+                <ui:IntegerField label="Max" value="100" name="SliderMaxField" />
+            </ui:VisualElement>
+            <ui:ListView show-foldout-header="true" header-title="Values" show-add-remove-footer="true" reorderable="true" show-border="true" virtualization-method="DynamicHeight" name="ValuesListView" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

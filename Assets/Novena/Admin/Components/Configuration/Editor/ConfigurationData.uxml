@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Novena/Admin/Components/Configuration/UI/option-item.uss?fileID=7433441132597879392&amp;guid=e7344b0cd3c49be4ebdef095e7929643&amp;type=3#option-item" />
+    <ui:Label tabindex="-1" text="Configuration" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LabelTitle" style="margin-bottom: 10px;" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:ListView show-border="true" header-title="Categories" show-add-remove-footer="true" show-foldout-header="true" name="CategoryList" binding-path="m_Categories" reorderable="true" virtualization-method="DynamicHeight" style="margin-bottom: 20px;" />
+        <ui:DropdownField label="Category" name="CategoryDropDown" binding-path="m_Categories" style="margin-bottom: 20px; display: flex;" />
+        <ui:ListView show-border="true" header-title="Options" show-add-remove-footer="true" show-foldout-header="true" name="OptionList" reorderable="true" virtualization-method="DynamicHeight" style="display: flex;" />
+    </ui:VisualElement>
+</ui:UXML>

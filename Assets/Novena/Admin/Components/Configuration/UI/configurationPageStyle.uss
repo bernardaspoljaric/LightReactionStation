@@ -1,0 +1,43 @@
+.option-item {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(248, 249, 250);
+    color: rgb(73, 80, 87);
+    /* height: 50px; */
+    min-height: 50px;
+    max-height: 150px;
+    margin-bottom: 10px;
+}
+
+.option-item:hover {
+    background-color: rgb(233, 236, 239);
+    color: rgb(73, 80, 87);
+}
+
+.option-item.label {
+    background-color: rgba(248, 249, 250, 0);
+    max-width: 300px;
+    width: 100%;
+    -unity-text-align: middle-left;
+    font-size: 21px;
+    white-space: normal;
+}
+
+.option-item.description {
+    background-color: rgba(248, 249, 250, 0);
+    width: 200;
+    -unity-text-align: middle-left;
+    font-size: 21px;
+    white-space: normal;
+    flex-wrap: wrap;
+}
+
+.option-item.value {
+    max-width: 300px;
+    width: 100%;
+}
+
+.option-item.slider {
+    max-width: 300px;
+    width: 100%;
+}

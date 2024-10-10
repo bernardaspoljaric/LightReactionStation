@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Dosis";
+    src: url("project://database/Assets/Resources/FontsMaterials/Dosis/Dosis-Regular.ttf");
+}
+
+:root {
+    --background-color: #dddddd;
+    --background-color-dark: #aeacac;
+    --background-color-light: #f3f3f3;
+    --button-background: #099ae5;
+    --button-active-hover: #65B8E2;
+    --button-active-background: #0771a8;
+    --button-text-color: white;    
+    --unity-font: "Dosis";
+}
+
+* {
+    -unity-font: url("project://database/Assets/Resources/FontsMaterials/Dosis/Dosis-Regular.ttf");
+    -unity-font-definition: url("project://database/Assets/Resources/FontsMaterials/DosisTextSettings.asset");
+    font-family: "Dosis";
+}
+
+.header {
+    background-color: var(--background-color-dark);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    -unity-font-style: Bold;
+}
+
+
+.button {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    -unity-font-style: Bold;
+}
+
+.button:hover {
+    background-color: var(--button-active-hover);
+}
+
+.button:active {
+    background-color: var(--button-active-background);
+}
+
+.button.active {
+    background-color: var(--button-active-background);
+}

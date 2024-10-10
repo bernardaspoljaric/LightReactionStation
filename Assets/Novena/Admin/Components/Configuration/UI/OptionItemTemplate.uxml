@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="OptionItem" class="option-item">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LabelName" class="label option-item" />
+        <ui:TextField picking-mode="Ignore" value="filler text" name="TextValue" class="option-item value" style="display: none;" />
+        <ui:DropdownField name="DropdownValue" style="display: none;" />
+        <ui:Slider high-value="100" name="SliderValue" show-input-field="true" class="option-item slider value" />
+        <ui:Toggle name="ToggleValue" style="display: none;" />
+        <ui:Vector2Field name="Vector2Value" class="option-item" />
+        <ui:Vector3Field name="Vector3Value" />
+        <ui:Label tabindex="-1" text="Description" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LabelDescription" class="option-item description" style="margin-left: 10px; flex-grow: 1; flex-wrap: nowrap;" />
+    </ui:VisualElement>
+</ui:UXML>
