@@ -24,7 +24,7 @@ namespace Novena
       _scoreText.text = _score.ToString();
     }
 
-    private void ResetScore()
+    public void ResetScore()
     {
       _score = 0;
       _scoreText.text = _score.ToString();

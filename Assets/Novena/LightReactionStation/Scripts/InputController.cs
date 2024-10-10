@@ -15,6 +15,18 @@ namespace Novena
       SetInput();
     }
 
+    /// <summary>
+    /// Get choosen input.
+    /// </summary>
+    /// <returns></returns>
+    public int GetInput()
+    {
+      return _input;
+    }
+
+    /// <summary>
+    /// Set game for choosen input.
+    /// </summary>
     private void SetInput()
     {
       if (_input == 0)

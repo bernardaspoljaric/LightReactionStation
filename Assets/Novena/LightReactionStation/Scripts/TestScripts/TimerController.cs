@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using Novena.Components.Timer;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -8,48 +10,108 @@ namespace Novena
   public class TimerController : MonoBehaviour
   {
     public static Action OnGameEnded;
-    [SerializeField] private Timer _timer;
+    public static Action OnLightTimerEnded;
+    [SerializeField] private Timer _gameTimer;
     [SerializeField] private TMP_Text _timerText;
 
     private int _gameTime;
+    private int _lightTime;
+    private bool _isLightTimesUp;
+    private Coroutine _lightTimerCoroutine;
 
     private void Awake()
     {
-      _timer.OnTimerEnded.RemoveAllListeners();
-      _timer.OnTimerEnded.AddListener(OnGameEnd);
+      _gameTimer.OnTimerEnded.RemoveAllListeners();
+      _gameTimer.OnTimerEnded.AddListener(OnGameEnd);
+
+      OutputController.OnOutputTimer += StartLightTimer;
     }
 
     private void Start()
     {
       _gameTime = Settings.Settings.GetValue<int>("GameTime");
+      _lightTime = Settings.Settings.GetValue<int>("LightTime");
       SetupTimer();
     }
 
-    public void StartGameTimer()
+    private void OnDestroy()
     {
-      _timer.StartTimer();
+      OutputController.OnOutputTimer -= StartLightTimer;
     }
 
+    /// <summary>
+    /// On game start.
+    /// </summary>
+    public void StartGameTimer()
+    {
+      _gameTimer.StartTimer();
+    }
+
+    /// <summary>
+    /// Get information if light timer is out.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsLightTimerEnded()
+    {
+      return _isLightTimesUp;
+    }
+
+    /// <summary>
+    /// If light is cliked in right time, stoplight timer.
+    /// </summary>
+    public void StopLightTimer()
+    {
+      StopCoroutine(_lightTimerCoroutine);
+      _isLightTimesUp = true;
+      OnLightTimerEnded?.Invoke();
+    }
+
+    /// <summary>
+    /// Set game timer.
+    /// </summary>
+    private void SetupTimer()
+    {
+      _gameTimer.IsStopwatch = false;
+      _gameTimer.TimeToCountdownFrom = _gameTime;
+      _gameTimer.FormatString = "mm\\:ss";
+      _timerText.text = ConvertTime();
+    }
+
+    /// <summary>
+    /// On game end.
+    /// </summary>
     private void OnGameEnd()
     {
-      _timer.StopTimer();
+      _gameTimer.StopTimer();
       OnGameEnded?.Invoke();
       Doozy.Engine.GameEventMessage.SendEvent("Back");
     }
 
-    private void SetupTimer()
-    {
-      _timer.IsStopwatch = false;
-      _timer.TimeToCountdownFrom = _gameTime;
-      _timer.FormatString = "mm\\:ss";
-      _timerText.text = ConvertTime();
-    }
-
+    /// <summary>
+    /// Convert game time.
+    /// </summary>
+    /// <returns></returns>
     private string ConvertTime()
     {
-      var time = TimeSpan.FromSeconds(_gameTime).ToString(_timer.FormatString);
+      var time = TimeSpan.FromSeconds(_gameTime).ToString(_gameTimer.FormatString);
 
       return time;
+    }
+
+    /// <summary>
+    /// Activate light timer.
+    /// </summary>
+    private void StartLightTimer()
+    {
+      _lightTimerCoroutine = StartCoroutine(LightTimer());
+    }
+
+    private IEnumerator LightTimer()
+    {
+      _isLightTimesUp = false;
+      yield return new WaitForSeconds(_lightTime);
+      OnLightTimerEnded?.Invoke();
+      _isLightTimesUp = true;
     }
   }
 }
