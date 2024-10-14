@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using Novena.Components.Timer;
 using System;
 using System.Collections;
@@ -61,9 +60,13 @@ namespace Novena
     /// </summary>
     public void StopLightTimer()
     {
-      StopCoroutine(_lightTimerCoroutine);
+      if(_lightTimerCoroutine != null)
+      {
+        StopCoroutine(_lightTimerCoroutine);
+        OnLightTimerEnded?.Invoke();
+      }
+
       _isLightTimesUp = true;
-      OnLightTimerEnded?.Invoke();
     }
 
     /// <summary>

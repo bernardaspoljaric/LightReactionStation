@@ -2,6 +2,7 @@ using System.Linq;
 using Doozy.Engine;
 using Novena.DAL;
 using Novena.DAL.Entity;
+using Novena.Settings;
 using Novena.UiUtility.Base;
 using Novena.Utility.Interface;
 using UnityEngine;

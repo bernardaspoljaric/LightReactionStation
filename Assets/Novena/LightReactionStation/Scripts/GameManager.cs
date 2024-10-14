@@ -25,15 +25,17 @@ namespace Novena
       Light.OnButtonClick += OnLightClicked;
 
       TimerController.OnGameEnded += GameEnd;
+      KeyboardController.OnKeyClicked += OnKeyboardClick;
 
     }
 
     private void OnDestroy()
     {
       HomeController.OnStartClicked -= StartGame;
-      Light.OnButtonClick += OnLightClicked;
+      Light.OnButtonClick -= OnLightClicked;
 
       TimerController.OnGameEnded -= GameEnd;
+      KeyboardController.OnKeyClicked -= OnKeyboardClick;
     }
 
     /// <summary>
@@ -105,6 +107,27 @@ namespace Novena
         player.GetComponent<ScoreController>().AddPoint();
         _timerController.StopLightTimer();
       }
+      else
+      {
+        _timerController.StopLightTimer();
+      }
+    }
+
+    private void OnKeyboardClick(int lightReferece)
+    {
+      var player = _playerController.GetActivePlayer();
+      if(lightReferece == GetActiveLight())
+      {
+        if (!_timerController.IsLightTimerEnded())
+        {
+          player.GetComponent<ScoreController>().AddPoint();
+          _timerController.StopLightTimer();
+        }
+      }
+      else
+      {
+        _timerController.StopLightTimer();
+      }   
     }
 
     private void StartGame()

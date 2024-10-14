@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace Novena
 {
   public class InputController : MonoBehaviour
   {
+    public static Action OnKeyboardInput;
     [SerializeField] private TouchController _touchController;
     [SerializeField] private KeyboardController _keyboardController;
     [SerializeField] private UdpController _udpController;
@@ -33,19 +35,21 @@ namespace Novena
       {
         _touchController.enabled = true;
         _keyboardController.enabled = false;
-        _keyboardController.enabled = false;
+        _udpController.enabled = false;
       }
       else if(_input == 1)
       {
         _touchController.enabled = false;
         _keyboardController.enabled = true;
-        _keyboardController.enabled = false;
+        _udpController.enabled = false;
+
+        OnKeyboardInput?.Invoke();
       }
       else if (_input == 2)
       {
         _touchController.enabled = false;
         _keyboardController.enabled = false;
-        _keyboardController.enabled = true;
+        _udpController.enabled = true;
       }
       else
       {

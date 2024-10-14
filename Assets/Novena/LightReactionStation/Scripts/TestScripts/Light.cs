@@ -14,17 +14,17 @@ namespace Novena
 
     private void Awake()
     {
+      _keyCG = GetComponentInChildren<CanvasGroup>();
       OutputController.OnSignalSend += ChangeLightColor;
+      InputController.OnKeyboardInput += ShowKeyboardKey;
     }
 
     private void Start()
-    {
-      _keyCG = GetComponentInChildren<CanvasGroup>();
+    {   
       _lightImage = GetComponent<Image>();
       _lightButton = GetComponent<Button>();
 
       SetLightIndex();
-      ShowKeyboardKey();
 
       _lightButton.onClick.RemoveAllListeners();
       _lightButton.onClick.AddListener(OnButtonCliked);
@@ -33,6 +33,7 @@ namespace Novena
     private void OnDestroy()
     {
       OutputController.OnSignalSend -= ChangeLightColor;
+      InputController.OnKeyboardInput -= ShowKeyboardKey;
     }
 
     /// <summary>
@@ -47,14 +48,11 @@ namespace Novena
     }
 
     /// <summary>
-    /// If is keyboard input, show text helpers on lights.
+    /// Show text helpers on lights.
     /// </summary>
     private void ShowKeyboardKey()
     {
-      if (GameManager.Instance.GetInputOption() == 1)
-        _keyCG.alpha = 1.0f;
-      else
-        _keyCG.alpha = 0.0f;
+      _keyCG.alpha = 1.0f;
     }
 
     /// <summary>
