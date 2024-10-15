@@ -8,9 +8,12 @@ namespace Novena
     private int _playerNumber;
     private int _activePlayer;
 
-    private void Start()
+    private void Awake()
     {
       _playerNumber = Settings.Settings.GetValue<int>("PlayerNumber");
+    }
+    private void Start()
+    {    
       CheckPlayerNumber();
 
       if (_playerNumber == 1)
@@ -35,6 +38,11 @@ namespace Novena
     public void SetActivePlayer(int index)
     {
       _activePlayer = index;
+    }
+
+    public GameObject GetPlayer(int index)
+    {
+      return _players[index];
     }
 
     /// <summary>

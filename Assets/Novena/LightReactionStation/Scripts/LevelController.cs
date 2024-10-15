@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Novena
@@ -9,9 +7,12 @@ namespace Novena
     private int _levelDifficulty;
     private int _signalTimePeriod;
 
-    private void Start()
+    private void Awake()
     {
       _levelDifficulty = Settings.Settings.GetValue<int>("LevelDifficulty");
+    }
+    private void Start()
+    {
       CheckLevelDifficulty();
       SetSignalTimePeriod();
     }
@@ -51,7 +52,7 @@ namespace Novena
     private void SetSignalTimePeriod()
     {
       if (_levelDifficulty == 0)
-        _signalTimePeriod = 10;
+        _signalTimePeriod = 7;
       else if (_levelDifficulty == 1)
         _signalTimePeriod = 5;
       else

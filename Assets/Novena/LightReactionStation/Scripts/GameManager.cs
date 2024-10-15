@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace Novena
@@ -8,6 +9,8 @@ namespace Novena
   {
     public static GameManager Instance;
     public static Action<bool> OnErrorHappened;
+
+    [SerializeField] private TMP_Text _resultText;
 
     [SerializeField] private TimerController _timerController;
     [SerializeField] private OutputController _outputController;
@@ -20,6 +23,7 @@ namespace Novena
       if (Instance == null)
         Instance = this;
 
+      Settings.Settings.LoadSettings();
       // test listener to start button clicked
       HomeController.OnStartClicked += StartGame;
       Light.OnButtonClick += OnLightClicked;
@@ -146,7 +150,21 @@ namespace Novena
       // test on camputer screen
       Doozy.Engine.GameEventMessage.SendEvent("Back");
 
-      //TODO: show last game result
+      ShowLastGameResult();
+    }
+
+    private void ShowLastGameResult()
+    {
+      var playerNumber = GetPlayerNumber();
+      string text = "";
+
+      for (int i = 0; i < playerNumber; i++)
+      {
+        var player = _playerController.GetPlayer(i);
+        text += "Player" + " " + i.ToString() + ": " + player.GetComponent<ScoreController>().GetScore() + "\n";
+      }
+
+      _resultText.text = text;
     }
   }
 }

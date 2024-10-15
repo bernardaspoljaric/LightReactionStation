@@ -18,7 +18,6 @@ namespace Novena
     private List<Light> _lightList;
     private Coroutine _outputCoroutine;
 
-    private int _difficultyLevel;
     private int _playerNumber;
     private int _roundCount = 1;
     private int _activeLight;
@@ -31,6 +30,9 @@ namespace Novena
     private void Start()
     {
       GetLights();
+
+      _playerNumber = GameManager.Instance.GetPlayerNumber();
+      _signalTimePeriod = GameManager.Instance.GetSignalTimePeriod();
     }
 
     private void OnDestroy()
@@ -43,10 +45,6 @@ namespace Novena
     /// </summary>
     public void StartGame()
     {
-      _playerNumber = GameManager.Instance.GetPlayerNumber();
-      _difficultyLevel = GameManager.Instance.GetDifficluty();
-      _signalTimePeriod = GameManager.Instance.GetSignalTimePeriod();
-
       if (GameManager.Instance.GetInputOption() != 2)
         SendSignal();
       else
@@ -89,8 +87,7 @@ namespace Novena
     /// </summary>
     private async void SendSignal()
     {
-      var randomStartTime = UnityEngine.Random.Range(1, 6);
-      await UniTask.Delay(randomStartTime * 100);
+      await UniTask.Delay(200);
       _outputCoroutine = StartCoroutine(SignalTime());
     }
 

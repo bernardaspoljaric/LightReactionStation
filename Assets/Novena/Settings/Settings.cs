@@ -94,7 +94,6 @@ namespace Novena.Settings
     private static SettingData GetSettingItem(string name)
     {
       SettingData output = null;
-
       output = _settingsManager.SettingItems.FirstOrDefault(s => s.Name == name);
 
       return output;
@@ -103,6 +102,11 @@ namespace Novena.Settings
     private static T ChangeType<T>(this object obj)
     {
       return (T)Convert.ChangeType(obj, typeof(T));
+    }
+
+    public static void LoadSettings()
+    {
+      _settingsManager.LoadSettings();
     }
   }
 }

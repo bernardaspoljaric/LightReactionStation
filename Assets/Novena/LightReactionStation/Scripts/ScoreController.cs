@@ -29,5 +29,10 @@ namespace Novena
       _score = 0;
       _scoreText.text = _score.ToString();
     }
+
+    public int GetScore()
+    {
+      return _score;
+    }
   }
 }

@@ -11,9 +11,13 @@ namespace Novena
     [SerializeField] private UdpController _udpController;
 
     private int _input;
-    private void Start()
+    private void Awake()
     {
       _input = Settings.Settings.GetValue<int>("Input");
+    }
+
+    private void Start()
+    {
       SetInput();
     }
 

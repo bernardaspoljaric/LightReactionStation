@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Novena.Components.Timer;
 using System;
 using System.Collections;
@@ -20,6 +21,9 @@ namespace Novena
 
     private void Awake()
     {
+      _gameTime = Settings.Settings.GetValue<int>("GameTime");
+      _lightTime = Settings.Settings.GetValue<int>("LightTime");
+
       _gameTimer.OnTimerEnded.RemoveAllListeners();
       _gameTimer.OnTimerEnded.AddListener(OnGameEnd);
 
@@ -28,8 +32,6 @@ namespace Novena
 
     private void Start()
     {
-      _gameTime = Settings.Settings.GetValue<int>("GameTime");
-      _lightTime = Settings.Settings.GetValue<int>("LightTime");
       SetupTimer();
     }
 
@@ -83,10 +85,11 @@ namespace Novena
     /// <summary>
     /// On game end.
     /// </summary>
-    private void OnGameEnd()
+    private async void OnGameEnd()
     {
       _gameTimer.StopTimer();
       OnGameEnded?.Invoke();
+      await UniTask.Delay(2000);
       Doozy.Engine.GameEventMessage.SendEvent("Back");
     }
 

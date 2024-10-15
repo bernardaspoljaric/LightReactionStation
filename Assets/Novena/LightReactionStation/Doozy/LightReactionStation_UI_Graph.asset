@@ -183,11 +183,11 @@ MonoBehaviour:
       m_outputSocketId: 074ebc13-dca0-4b5f-9a88-317ef48435ed
     - m_inputConnectionPoint: {x: 202, y: 4}
       m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: 85c3d953-8700-4bd6-9757-178254b64c40
+      m_id: 809164ef-9015-4313-9055-26bf06a018b3
       m_inputNodeId: f9543401-f63f-45fe-b2e1-f83e12f2a1c3
       m_inputSocketId: ed6b479e-4129-4a17-9be5-a89b0e010bb5
       m_outputNodeId: 90177aa9-47de-4500-9321-1b0be861f000
-      m_outputSocketId: d5f5e997-ed07-49d7-97e7-90a537bda752
+      m_outputSocketId: 1d340445-f5f9-4e54-ae45-ede541045a5e
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -306,11 +306,11 @@ MonoBehaviour:
     m_connections:
     - m_inputConnectionPoint: {x: 202, y: 4}
       m_outputConnectionPoint: {x: -2, y: 4}
-      m_id: 85c3d953-8700-4bd6-9757-178254b64c40
+      m_id: 809164ef-9015-4313-9055-26bf06a018b3
       m_inputNodeId: f9543401-f63f-45fe-b2e1-f83e12f2a1c3
       m_inputSocketId: ed6b479e-4129-4a17-9be5-a89b0e010bb5
       m_outputNodeId: 90177aa9-47de-4500-9321-1b0be861f000
-      m_outputSocketId: d5f5e997-ed07-49d7-97e7-90a537bda752
+      m_outputSocketId: 1d340445-f5f9-4e54-ae45-ede541045a5e
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -322,10 +322,10 @@ MonoBehaviour:
     m_width: 216
     m_x: 0
     m_y: 62
-    m_id: d5f5e997-ed07-49d7-97e7-90a537bda752
+    m_id: 1d340445-f5f9-4e54-ae45-ede541045a5e
     m_nodeId: 90177aa9-47de-4500-9321-1b0be861f000
-    m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"General","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_socketName: OutputSocket_1
+    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"Back","TimeDelay":3.0,"Trigger":3}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -378,4 +378,4 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 988c8c34-ef82-44a8-b4d2-654c919de821
-  m_lastModified: 133728643357862911
+  m_lastModified: 133734474663778669

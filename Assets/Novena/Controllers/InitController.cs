@@ -2,7 +2,6 @@ using System.Linq;
 using Doozy.Engine;
 using Novena.DAL;
 using Novena.DAL.Entity;
-using Novena.Settings;
 using Novena.UiUtility.Base;
 using Novena.Utility.Interface;
 using UnityEngine;
@@ -13,11 +12,11 @@ namespace Novena.Controllers
   public class InitController : UiController
   {
     public override void OnShowViewFinished()
-    {
+    {   
       CheckGuidesState();
       base.OnShowViewFinished();
     }
-    
+
     /// <summary>
     /// Checks for downloaded guides.
     /// </summary>

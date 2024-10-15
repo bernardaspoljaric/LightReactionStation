@@ -27,6 +27,7 @@ namespace Novena.Settings
     /// <returns>List of setting items</returns>
     public static List<SettingData> Load()
     {
+
       List<SettingData> output = new List<SettingData>();
 
       //File doesn't exist. Return empty list.
