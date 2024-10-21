@@ -31,6 +31,25 @@ namespace Novena
       }
     }
 
+    public static Color GetPlayerColorName(Player player)
+    {
+      PlayerColors playerColors = Resources.Load<PlayerColors>("PlayerColor");
+
+      switch (player)
+      {
+        case Player.Player1:
+          return playerColors.Player1;
+        case Player.Player2:
+          return playerColors.Player2;
+        case Player.Player3:
+          return playerColors.Player3;
+        case Player.Player4:
+          return playerColors.Player4;
+        default:
+          return Color.black;
+      }
+    }
+
     public static Player GetPlayer(string playerName)
     {
       switch(playerName)

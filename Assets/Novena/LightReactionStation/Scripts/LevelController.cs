@@ -5,7 +5,7 @@ namespace Novena
   public class LevelController : MonoBehaviour
   {
     private int _levelDifficulty;
-    private int _signalTimePeriod;
+    private float _signalTimePeriod;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ namespace Novena
     /// Get current signal time period.
     /// </summary>
     /// <returns></returns>
-    public int GetSignalTimePeriod()
+    public float GetSignalTimePeriod()
     {
       return _signalTimePeriod;
     }
@@ -52,11 +52,11 @@ namespace Novena
     private void SetSignalTimePeriod()
     {
       if (_levelDifficulty == 0)
-        _signalTimePeriod = 7;
+        _signalTimePeriod = 7f;
       else if (_levelDifficulty == 1)
-        _signalTimePeriod = 5;
+        _signalTimePeriod = 5f;
       else
-        _signalTimePeriod = 3;
+        _signalTimePeriod = 3f;
     }
   }
 }

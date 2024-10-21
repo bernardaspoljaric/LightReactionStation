@@ -9,12 +9,13 @@ namespace Novena
   public class OutputController : MonoBehaviour
   {
     public static Action<Color, int> OnSignalSend;
+    public static Action<string> OnUdpSignalSend;
     public static Action OnOutputTimer;
 
     // only for computer test
     [SerializeField] private RectTransform _gameBodyRT;
     
-    private int _signalTimePeriod;
+    private float _signalTimePeriod;
     private List<Light> _lightList;
     private Coroutine _outputCoroutine;
 
@@ -45,10 +46,7 @@ namespace Novena
     /// </summary>
     public void StartGame()
     {
-      if (GameManager.Instance.GetInputOption() != 2)
         SendSignal();
-      else
-        SendSignalUdp();
     }
 
     /// <summary>
@@ -97,9 +95,13 @@ namespace Novena
     /// <returns></returns>
     private IEnumerator SignalTime()
     {
+      var timePeriod = GameManager.Instance.GetSignalTimePeriod();
       while (true)
       {
         yield return new WaitForSeconds(_signalTimePeriod);
+
+        if (GameManager.Instance.GetDifficluty() > 0)
+          //_signalTimePeriod = UnityEngine.Random.Range(1f, timePeriod);
 
         _activeLight = UnityEngine.Random.Range(0, _lightList.Count);
         if (_playerNumber != 1)
@@ -111,7 +113,10 @@ namespace Novena
         }
         else
         {
-          OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player1), _activeLight);
+          if (GameManager.Instance.GetInputOption() == 2)
+            OnUdpSignalSend?.Invoke(_activeLight + "_Player1" + "_Light");
+          else
+            OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player1), _activeLight);
         }
 
         OnOutputTimer?.Invoke();
@@ -123,7 +128,10 @@ namespace Novena
     /// </summary>
     private void OnSignalEnd()
     {
-      OnSignalSend?.Invoke(Color.white, _activeLight);
+      if (GameManager.Instance.GetInputOption() != 2)
+        OnSignalSend?.Invoke(Color.white, _activeLight);
+      else
+        OnUdpSignalSend?.Invoke(_activeLight + "_white" + "_Light");
     }
 
     /// <summary>
@@ -131,30 +139,42 @@ namespace Novena
     /// </summary>
     private void SetActivePlayer()
     {
+      var inputOption = GameManager.Instance.GetInputOption();
       switch (_roundCount) 
       {
         case 1:
-          OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player1), _activeLight);
+          if(inputOption != 2)
+            OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player1), _activeLight);
+          else
+            OnUdpSignalSend?.Invoke(_activeLight + "_Player1" + "_Light");
+
           GameManager.Instance.SetActivePlayer(0);
           break;
         case 2:
-          OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player2), _activeLight);
+          if (inputOption != 2)
+            OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player2), _activeLight);
+          else
+            OnUdpSignalSend?.Invoke(_activeLight + "_Player2" + "_Light");
+
           GameManager.Instance.SetActivePlayer(1);
           break;
         case 3:
-          OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player3), _activeLight);
+          if (inputOption != 2)
+            OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player3), _activeLight);
+          else
+            OnUdpSignalSend?.Invoke(_activeLight + "_Player3" + "_Light");
+
           GameManager.Instance.SetActivePlayer(2);
           break;
         case 4:
-          OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player4), _activeLight);
+          if (inputOption != 2)
+            OnSignalSend?.Invoke(Players.GetPlayerColor(Players.Player.Player4), _activeLight);
+          else
+            OnUdpSignalSend?.Invoke(_activeLight + "_Player4" + "_Light");
+
           GameManager.Instance.SetActivePlayer(3);
           break;
       }
-    }
-
-    private void SendSignalUdp()
-    {
-
     }
   }
 }

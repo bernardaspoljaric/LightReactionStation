@@ -6,6 +6,11 @@ namespace Novena
   public class InputController : MonoBehaviour
   {
     public static Action OnKeyboardInput;
+
+    // only for test, because we have three input options
+    public static Action OnUdpInput;
+    public static Action OnTouchInput;
+
     [SerializeField] private TouchController _touchController;
     [SerializeField] private KeyboardController _keyboardController;
     [SerializeField] private UdpController _udpController;
@@ -40,6 +45,8 @@ namespace Novena
         _touchController.enabled = true;
         _keyboardController.enabled = false;
         _udpController.enabled = false;
+
+        OnTouchInput?.Invoke();
       }
       else if(_input == 1)
       {
@@ -54,6 +61,8 @@ namespace Novena
         _touchController.enabled = false;
         _keyboardController.enabled = false;
         _udpController.enabled = true;
+
+        OnUdpInput?.Invoke();
       }
       else
       {

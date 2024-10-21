@@ -9,6 +9,7 @@ namespace Novena
   {
     public static GameManager Instance;
     public static Action<bool> OnErrorHappened;
+    public static Action<string> OnGameEnd;
 
     [SerializeField] private TMP_Text _resultText;
 
@@ -30,7 +31,6 @@ namespace Novena
 
       TimerController.OnGameEnded += GameEnd;
       KeyboardController.OnKeyClicked += OnKeyboardClick;
-
     }
 
     private void OnDestroy()
@@ -95,15 +95,26 @@ namespace Novena
       _playerController.SetActivePlayer(index);
     }
 
-    public int GetSignalTimePeriod()
+    public float GetSignalTimePeriod()
     {
       return _levelController.GetSignalTimePeriod();
+    }
+
+    public void StartGame()
+    {
+      // test on camputer screen
+      if (_inputController.GetInput() != 2)
+        Doozy.Engine.GameEventMessage.SendEvent("StartGame");
+
+      _playerController.ResetPlayers();
+      DOVirtual.DelayedCall(0.5f, () => { _timerController.StartGameTimer(); });
+      _outputController.StartGame();
     }
 
     /// <summary>
     /// When user clicks on light.
     /// </summary>
-    private void OnLightClicked()
+    public void OnLightClicked()
     {
       var player = _playerController.GetActivePlayer();
       if (!_timerController.IsLightTimerEnded())
@@ -134,23 +145,20 @@ namespace Novena
       }   
     }
 
-    private void StartGame()
-    {
-      // test on camputer screen
-      Doozy.Engine.GameEventMessage.SendEvent("StartGame");
-
-      _playerController.ResetPlayers();
-      DOVirtual.DelayedCall(0.5f, () => { _timerController.StartGameTimer(); });
-      _outputController.StartGame();
-    }
-
     private void GameEnd()
     {
       _outputController.StopGame();
-      // test on camputer screen
-      Doozy.Engine.GameEventMessage.SendEvent("Back");
 
-      ShowLastGameResult();
+      // test on camputer screen
+      if (_inputController.GetInput() != 2)
+      {
+        Doozy.Engine.GameEventMessage.SendEvent("Back");
+        ShowLastGameResult();
+      }
+      else
+      {
+        OnGameEnd?.Invoke("end");
+      }
     }
 
     private void ShowLastGameResult()

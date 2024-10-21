@@ -5,7 +5,7 @@ namespace Novena
 {
   public class ScoreController : MonoBehaviour
   {
-    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text[] _scoreText;
 
     private int _score = 0;
     private Players.Player _player;
@@ -13,21 +13,34 @@ namespace Novena
     private void Start()
     {
       _player = Players.GetPlayer(gameObject.name);
-      _scoreText.color = Players.GetPlayerColor(_player);
-      _scoreText.text = _score.ToString();
-      _scoreText.gameObject.SetActive(true);
+
+      for (int i = 0; i < _scoreText.Length; i++)
+      {
+        _scoreText[i].color = Players.GetPlayerColor(_player);
+        _scoreText[i].text = _score.ToString();
+        _scoreText[i].gameObject.SetActive(true);
+      }
+
     }
 
     public void AddPoint()
     {
       _score++;
-      _scoreText.text = _score.ToString();
+
+      for (int i = 0; i < _scoreText.Length; i++)
+      {
+        _scoreText[i].text = _score.ToString();
+      }
     }
 
     public void ResetScore()
     {
       _score = 0;
-      _scoreText.text = _score.ToString();
+
+      for (int i = 0; i < _scoreText.Length; i++)
+      {
+        _scoreText[i].text = _score.ToString();
+      }
     }
 
     public int GetScore()

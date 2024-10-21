@@ -1,15 +1,18 @@
+using System;
 using UnityEngine;
 
 namespace Novena
 {
-  public class UdpController : MonoBehaviour
+  public class UdpTestController : MonoBehaviour
   {
+    public static Action<string> OnLightColorChange;
+    public static Action OnGameEnd;
     private NUDP _nudp;
 
     private void Awake()
     {
-      OutputController.OnUdpSignalSend += SendData;
-      GameManager.OnGameEnd += SendData;
+      LightTest.OnButtonClick += SetMessage;
+      GameTestController.OnStart += SendData;
     }
     private void Start()
     {
@@ -25,19 +28,23 @@ namespace Novena
 
     private void OnDestroy()
     {
-      OutputController.OnUdpSignalSend -= SendData;
-      GameManager.OnGameEnd -= SendData;
+      LightTest.OnButtonClick -= SetMessage;
+      GameTestController.OnStart -= SendData;
     }
 
     public void OnDataReceived(string message)
     {
-      if(message == "start")
-        GameManager.Instance.StartGame();
+      if (message.Contains("Light")) 
+        OnLightColorChange?.Invoke(message);
 
-      if(message == _nudp.LastSentMessage)
-      {
-        GameManager.Instance.OnLightClicked();
-      }
+      if (message == "end")
+        OnGameEnd?.Invoke();
+    }
+
+    private void SetMessage()
+    {
+      var message = _nudp.LastReceivedMessage;
+      SendData(message);
     }
 
     private void SendData(string message)
