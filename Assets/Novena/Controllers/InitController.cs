@@ -22,24 +22,24 @@ namespace Novena.Controllers
     /// </summary>
     private void CheckGuidesState()
     {
-      GuidesEntity guidesEntity = new GuidesEntity();
+      //GuidesEntity guidesEntity = new GuidesEntity();
 
-      var localGuides = guidesEntity.GetAll();
+      //var localGuides = guidesEntity.GetAll();
 
-      guidesEntity.Dispose();
+      //guidesEntity.Dispose();
 
-      if (localGuides.Count <= 0)
-      {
-        SceneManager.LoadScene(1);
-        return;
-      }
+      //if (localGuides.Count <= 0)
+      //{
+      //  SceneManager.LoadScene(1);
+      //  return;
+      //}
 
-      //Lets load our guides
-      Data.LoadContent(localGuides);
+      ////Lets load our guides
+      //Data.LoadContent(localGuides);
 
       GameEventMessage.SendEvent("GoToHome");
 
-      Initialize();
+      //Initialize();
     }
 
     private void Initialize()

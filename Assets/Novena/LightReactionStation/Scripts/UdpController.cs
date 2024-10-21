@@ -31,10 +31,10 @@ namespace Novena
 
     public void OnDataReceived(string message)
     {
-      if(message == "start")
+      if(message == "start\r")
         GameManager.Instance.StartGame();
 
-      if(message == _nudp.LastSentMessage)
+      if(message == _nudp.LastSentMessage + "\r")
       {
         GameManager.Instance.OnLightClicked();
       }

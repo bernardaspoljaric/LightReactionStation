@@ -53,6 +53,8 @@ namespace Novena
       _startContainerCG.blocksRaycasts = false;
 
       _udpContainerCG.alpha = 1;
+      _udpContainerCG.interactable = true;
+      _udpContainerCG.blocksRaycasts = true;
     }
 
     private void SetStart()
@@ -62,6 +64,8 @@ namespace Novena
       _startContainerCG.blocksRaycasts = true;
 
       _udpContainerCG.alpha = 0;
+      _udpContainerCG.interactable = false;
+      _udpContainerCG.blocksRaycasts = false;
     }
   }
 }

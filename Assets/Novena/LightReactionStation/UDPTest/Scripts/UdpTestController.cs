@@ -7,6 +7,7 @@ namespace Novena
   {
     public static Action<string> OnLightColorChange;
     public static Action OnGameEnd;
+
     private NUDP _nudp;
 
     private void Awake()
@@ -34,10 +35,10 @@ namespace Novena
 
     public void OnDataReceived(string message)
     {
-      if (message.Contains("Light")) 
+      if (message.Contains("Light\r")) 
         OnLightColorChange?.Invoke(message);
 
-      if (message == "end")
+      if (message == "end\r")
         OnGameEnd?.Invoke();
     }
 
