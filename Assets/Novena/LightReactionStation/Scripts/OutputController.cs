@@ -104,6 +104,7 @@ namespace Novena
           //_signalTimePeriod = UnityEngine.Random.Range(1f, timePeriod);
 
         _activeLight = UnityEngine.Random.Range(0, _lightList.Count);
+
         if (_playerNumber != 1)
         {
           SetActivePlayer();

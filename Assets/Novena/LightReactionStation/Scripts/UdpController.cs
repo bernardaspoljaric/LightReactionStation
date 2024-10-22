@@ -34,7 +34,7 @@ namespace Novena
       if(message == "start\r")
         GameManager.Instance.StartGame();
 
-      if(message == _nudp.LastSentMessage + "\r")
+      if(message == GameManager.Instance.GetActiveLight().ToString() + "\r")
       {
         GameManager.Instance.OnLightClicked();
       }

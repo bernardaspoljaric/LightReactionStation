@@ -337,6 +337,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
     m_RemovedGameObjects: []
@@ -605,6 +610,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
@@ -1090,6 +1100,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
     m_RemovedGameObjects: []
@@ -1256,6 +1271,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
     m_RemovedGameObjects: []
@@ -1389,6 +1409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
@@ -2467,6 +2492,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
     m_RemovedGameObjects: []
@@ -2662,6 +2692,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
     m_RemovedGameObjects: []
@@ -2827,6 +2862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}
@@ -3974,6 +4014,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894141356496201611, guid: afe8016d9703fa9438559c974968fb5f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5092841312796509105, guid: afe8016d9703fa9438559c974968fb5f, type: 3}

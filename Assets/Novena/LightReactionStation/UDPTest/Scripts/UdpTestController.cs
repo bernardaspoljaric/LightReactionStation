@@ -12,7 +12,7 @@ namespace Novena
 
     private void Awake()
     {
-      LightTest.OnButtonClick += SetMessage;
+      LightTest.OnButtonClick += SendData;
       GameTestController.OnStart += SendData;
     }
     private void Start()
@@ -29,7 +29,7 @@ namespace Novena
 
     private void OnDestroy()
     {
-      LightTest.OnButtonClick -= SetMessage;
+      LightTest.OnButtonClick -= SendData;
       GameTestController.OnStart -= SendData;
     }
 
@@ -40,12 +40,6 @@ namespace Novena
 
       if (message == "end\r")
         OnGameEnd?.Invoke();
-    }
-
-    private void SetMessage()
-    {
-      var message = _nudp.LastReceivedMessage;
-      SendData(message);
     }
 
     private void SendData(string message)

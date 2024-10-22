@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LightReactionStation.unity
     guid: afeea3e49885561498e331ace75bf245
-  - enabled: 1
+  - enabled: 0
     path: Assets/Novena/LightReactionStation/UDPTest/Scenes/UdpTestScene.unity
     guid: 73b022b56ef0a174690009b2b075ab71
   - enabled: 1

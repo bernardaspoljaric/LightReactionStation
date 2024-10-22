@@ -6,7 +6,7 @@ namespace Novena
 {
   public class LightTest : MonoBehaviour
   {
-    public static Action OnButtonClick;
+    public static Action<string> OnButtonClick;
 
     [SerializeField] private GameTestController _gameTestController;
     private Image _lightImage;
@@ -34,9 +34,9 @@ namespace Novena
 
     private void OnButtonCliked()
     {
-      if (GameManager.Instance.GetActiveLight() != _lightIndex) return;
+      if (_gameTestController.GetActiveLight() != _lightIndex) return;
 
-      OnButtonClick?.Invoke();
+      OnButtonClick?.Invoke(_lightIndex.ToString());
     }
   }
 }
