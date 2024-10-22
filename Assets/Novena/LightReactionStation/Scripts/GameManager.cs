@@ -10,6 +10,7 @@ namespace Novena
     public static GameManager Instance;
     public static Action<bool> OnErrorHappened;
     public static Action<string> OnGameEnd;
+    public bool IsOtherOption;
 
     [SerializeField] private TMP_Text _resultText;
 
@@ -28,6 +29,7 @@ namespace Novena
       // test listener to start button clicked
       HomeController.OnStartClicked += StartGame;
       Light.OnButtonClick += OnLightClicked;
+      LightController.OnButtonClick += OnLightClickedOption;
 
       TimerController.OnGameEnded += GameEnd;
       KeyboardController.OnKeyClicked += OnKeyboardClick;
@@ -37,6 +39,7 @@ namespace Novena
     {
       HomeController.OnStartClicked -= StartGame;
       Light.OnButtonClick -= OnLightClicked;
+      LightController.OnButtonClick -= OnLightClickedOption;
 
       TimerController.OnGameEnded -= GameEnd;
       KeyboardController.OnKeyClicked -= OnKeyboardClick;
@@ -126,6 +129,23 @@ namespace Novena
       {
         _timerController.StopLightTimer();
       }
+    }
+
+    /// <summary>
+    /// When user clicks on light - using LightController.
+    /// </summary>
+    public void OnLightClickedOption(LightController lightController)
+    {
+      Debug.Log(lightController.IsActiveLight());
+      if (lightController.IsActiveLight())
+      {
+        var playerName = lightController.GetLightsPlayer();
+        var playerIndex = Int32.Parse(playerName.ToString().Substring(playerName.ToString().Length - 1));
+        var player= _playerController.GetPlayer(playerIndex - 1);
+        player.GetComponent<ScoreController>().AddPoint();
+      }
+
+      lightController.StopLightTimer();
     }
 
     private void OnKeyboardClick(int lightReferece)
