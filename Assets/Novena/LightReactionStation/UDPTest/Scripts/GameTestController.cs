@@ -18,6 +18,7 @@ namespace Novena
 
     private void Awake()
     {
+
       UdpTestController.OnLightColorChange += ChangeLightColor;
       UdpTestController.OnGameEnd += OnGameEnd;
 

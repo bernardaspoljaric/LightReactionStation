@@ -26,13 +26,21 @@ namespace Novena
         Instance = this;
 
       Settings.Settings.LoadSettings();
-      // test listener to start button clicked
-      HomeController.OnStartClicked += StartGame;
-      Light.OnButtonClick += OnLightClicked;
-      LightController.OnButtonClick += OnLightClickedOption;
 
-      TimerController.OnGameEnded += GameEnd;
-      KeyboardController.OnKeyClicked += OnKeyboardClick;
+      HomeController.OnStartClicked += StartGame;
+
+      if (IsOtherOption)
+      {
+        LightController.OnButtonClick += OnLightClickedOption;
+        KeyboardController.OnKeyClicked += OnKeyboardClickOption;
+      }
+      else
+      {
+        Light.OnButtonClick += OnLightClicked;
+        KeyboardController.OnKeyClicked += OnKeyboardClick;
+      }
+      
+      TimerController.OnGameEnded += GameEnd;   
     }
 
     private void OnDestroy()
@@ -43,8 +51,10 @@ namespace Novena
 
       TimerController.OnGameEnded -= GameEnd;
       KeyboardController.OnKeyClicked -= OnKeyboardClick;
+      KeyboardController.OnKeyClicked -= OnKeyboardClickOption;
     }
 
+    #region Public helper methods
     /// <summary>
     /// If there is some problem with game configuration send event for error and disable start game.
     /// </summary>
@@ -103,6 +113,11 @@ namespace Novena
       return _levelController.GetSignalTimePeriod();
     }
 
+    #endregion
+
+    /// <summary>
+    /// Starts a game depending on choosen input.
+    /// </summary>
     public void StartGame()
     {
       // test on camputer screen
@@ -114,6 +129,7 @@ namespace Novena
       _outputController.StartGame();
     }
 
+    #region Original game logic - using Light.cs
     /// <summary>
     /// When user clicks on light.
     /// </summary>
@@ -132,26 +148,13 @@ namespace Novena
     }
 
     /// <summary>
-    /// When user clicks on light - using LightController.
+    /// When user clicks key on keyboard check if right key is clicked and add points.
     /// </summary>
-    public void OnLightClickedOption(LightController lightController)
-    {
-      Debug.Log(lightController.IsActiveLight());
-      if (lightController.IsActiveLight())
-      {
-        var playerName = lightController.GetLightsPlayer();
-        var playerIndex = Int32.Parse(playerName.ToString().Substring(playerName.ToString().Length - 1));
-        var player= _playerController.GetPlayer(playerIndex - 1);
-        player.GetComponent<ScoreController>().AddPoint();
-      }
-
-      lightController.StopLightTimer();
-    }
-
+    /// <param name="lightReferece"></param>
     private void OnKeyboardClick(int lightReferece)
     {
       var player = _playerController.GetActivePlayer();
-      if(lightReferece == GetActiveLight())
+      if (lightReferece == GetActiveLight())
       {
         if (!_timerController.IsLightTimerEnded())
         {
@@ -162,8 +165,46 @@ namespace Novena
       else
       {
         _timerController.StopLightTimer();
-      }   
+      }
     }
+    #endregion
+
+    #region Option game logic - using LightController.cs
+    /// <summary>
+    /// When user clicks on light - using LightController.
+    /// </summary>
+    public void OnLightClickedOption(LightController lightController)
+    {
+      if (lightController.IsActiveLight())
+      {
+        var playerName = lightController.GetLightsPlayer();
+        var playerIndex = Int32.Parse(playerName.ToString().Substring(playerName.ToString().Length - 1));
+        var player = _playerController.GetPlayer(playerIndex - 1);
+        player.GetComponent<ScoreController>().AddPoint();
+      }
+
+      lightController.StopLightTimer();
+    }
+
+    /// <summary>
+    /// When user clicks on keyboard check if light is active and set points to player - using LightController.cs.
+    /// </summary>
+    /// <param name="lightReferece"></param>
+    private void OnKeyboardClickOption(int lightReferece)
+    {
+      var lightController = GameObject.Find("Light_" + lightReferece).GetComponent<LightController>();
+
+      if (lightController.IsActiveLight())
+      {
+        var playerName = lightController.GetLightsPlayer();
+        var playerIndex = Int32.Parse(playerName.ToString().Substring(playerName.ToString().Length - 1));
+        var player = _playerController.GetPlayer(playerIndex - 1);
+        player.GetComponent<ScoreController>().AddPoint();
+      }
+
+      lightController.StopLightTimer();
+    }
+    #endregion
 
     private void GameEnd()
     {

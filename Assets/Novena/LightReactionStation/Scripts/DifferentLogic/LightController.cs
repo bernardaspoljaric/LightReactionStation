@@ -113,7 +113,7 @@ namespace Novena
 
     private void OnButtonCliked()
     {
-      if (!_isActive) return;
+      if (GameManager.Instance.GetActiveLight() != _lightIndex) return;
 
       OnButtonClick?.Invoke(this);
     }
